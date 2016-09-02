@@ -3,19 +3,20 @@
 ini_set('error_log', '/tmp/php/log');
 abstract class BaseShapes {
 
-	protected $operators = ['*','/','+', '-'];
-
 	abstract protected function calculateArea();
 
-	abstract protected function calculatePerimeter($formula, $dimensions);
+	abstract protected function calculatePerimeter();
 
-	abstract protected function resize($dimestions, $scale);
+	abstract protected function resize($scale);
 
 	public function runEquation($formula, $dimensions) {
-		foreach($this->formula as $val) {
-			$equation[] = (isset($this->dimensions[$val])) ? $this->dimensions[$val] : $val;
+		$equation = $formula;
+		foreach(explode(' ', $formula) as $val) {
+			if(isset($dimensions[$val])) {
+				$equation = str_replace($val, $dimensions[$val], $equation);
+			}
 		}
-		eval('$result = ' . implode($equation, ' ') . ';');
+		eval('$result = ' . $equation . ';');
 		return $result;
 	}
 }

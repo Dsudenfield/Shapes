@@ -5,25 +5,26 @@ ini_set('error_log', '/tmp/php/log');
 
 class Rectangle extends BaseShapes {
 
-	protected $formula = [];
 	protected $dimensions = [];
+	protected $areaFormula = "l * w";
+	protected $perimeterFormula = "( l + w ) * 2";
 
 	public function __construct ($length, $width) {
-		$this->dimensions = ['L' => $length, 'W' => $width];
+		$this->dimensions = ['l' => $length, 'w' => $width];
 	}
 
 	public function calculateArea() {
-		$formula = ['L', '*', 'W'];
-		return $this->runEquation($formula, $this->dimensions);
+		return $this->runEquation($this->areaFormula, $this->dimensions);
 	}
 
-	public function calculatePerimeter($fomula, $dimestions) {
-		//2(l+w)
-		$formula = ['(', 'L', '+', 'W', ')', '*', '2'];
-		return $this->runEquation($formula, $this->dimensions);
+	public function calculatePerimeter() {
+		return $this->runEquation($this->perimeterFormula, $this->dimensions);
 	}
 
-	public function resize($formula, $dimestions) {
-
+	public function resize($scale) {
+		foreach($this->dimensions as $key => $dimension) {
+			$newValue[$key] = $dimension * $scale;
+		}
+		return $newValue;
 	}
 }

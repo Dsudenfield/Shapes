@@ -1,9 +1,11 @@
 <?php
 	//use Libraray\Rectangle;
-	require_once('Library/Rectangle.php');
+	require_once('Library/Circle.php');
 
-	$rectangle = new Rectangle(20, 20);
-	$area = $rectangle->calculateArea();
-
-	print_r($area);
+	$orbject = new Circle(5);
+	//$val = $orbject->calculateArea();
+	$val = $orbject->calculatePerimeter();
+	$val = $orbject->resize(1.234);
+	
+	print_r($val);
 ?>
