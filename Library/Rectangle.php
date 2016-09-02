@@ -1,7 +1,5 @@
 <?php
-//namespace Library;
 require_once('Library/BaseShapes.php');
-ini_set('error_log', '/tmp/php/log');
 
 class Rectangle extends BaseShapes {
 
